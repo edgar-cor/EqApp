@@ -3,6 +3,7 @@ package com.example.earthquaken
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.earthquaken.databinding.ActivityMainBinding
 
@@ -23,6 +24,10 @@ class MainActivity : AppCompatActivity() {
         val adapter = EqAdapter()
         binding.eqRecycler.adapter = adapter
         adapter.submitList(eqList)
+        
+        adapter.onItemClickListener = {
+            Toast.makeText( this, it.place, Toast.LENGTH_SHORT).show()
+        }
 
         if ( eqList.isEmpty() ) {
             binding.eqEmpetyView.visibility = View.VISIBLE
